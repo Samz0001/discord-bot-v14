@@ -23,3 +23,5 @@ This Discord bot is built using Discord.js version 14. It showcases two commands
 5. **Usage**:
    `Run the Bot`
    **_node bot.js_**
+
+   ###################
