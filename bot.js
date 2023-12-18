@@ -1,5 +1,11 @@
 require("dotenv").config();
-const { Client, IntentsBitField, EmbedBuilder, Embed } = require("discord.js");
+const {
+  Client,
+  IntentsBitField,
+  EmbedBuilder,
+  Embed,
+  ActivityType,
+} = require("discord.js");
 const client = new Client({
   intents: [
     IntentsBitField.Flags.Guilds,
@@ -8,8 +14,28 @@ const client = new Client({
     IntentsBitField.Flags.MessageContent,
   ],
 });
+
+let status = [
+  {
+    name: "Lofi Hindi",
+    type: ActivityType.Streaming,
+    url: "https://www.youtube.com/watch?v=KRA26LhuTP4&ab_channel=aMethMusic",
+  },
+  {
+    name: "Under Control",
+    type: ActivityType.Watching,
+  },
+  {
+    name: "Under Control",
+    type: ActivityType.Listening,
+  },
+];
 client.on("ready", (c) => {
   console.log(`✅ Logged in as ${c.user.tag}`);
+  setInterval(() => {
+    let random = Math.floor(Math.random() * status.length);
+    client.user.setActivity(status[random]);
+  }, 10000);
 });
 
 client.on("interactionCreate", (interaction) => {
